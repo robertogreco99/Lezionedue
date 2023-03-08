@@ -12,22 +12,23 @@ impl Drop for Test{
 }
 
 fn main() {
-    for i in  0..4 {
+    /*for i in  0..4 {
         println!("Iterazione # {}",i);
         let t = Test(1);
         //t.drop(); non si può fare
         println!("Created Test ({}) at address {:p}",t.0,&t);
         println!("Finishing...");
 
-        /*ogni volta crea leva crea leva allargandosi e richiudendosi*/
-        /*variabili locali iniziano nel punto in cui le introducono e cessano di esistere
+        ogni volta crea leva crea leva allargandosi e richiudendosi
+        variabili locali iniziano nel punto in cui le introducono e cessano di esistere
         dopo la {}
-         */
+
 
     }
 
-    return;
+    return;*/
 
+    let mut v:Vec<Test> = Vec::<Test>::new();
 
     //let mut v:Vec<u8> = Vec::<u8>::new(); //parte vuoto
     //qua risposta = 0x04;
@@ -44,37 +45,39 @@ fn main() {
     //risposta è 0x08: l'allineamento deve essere a multipli di 8
 
 
-    /*
-    let mut v:Vec<i32> = Vec::<i32>::new(); //parte vuoto
-    let mut v1:Vec<u8> = Vec::<u8>::with_capacity(8); //si può già allocare con una stima
+
+    //let mut v:Vec<i32> = Vec::<i32>::new(); //parte vuoto
+    //let mut v1:Vec<u8> = Vec::<u8>::with_capacity(8); //si può già allocare con una stima
     println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
     //println!("ptr v1: {:p}, capacity:{},len: {}", v1.as_ptr(),v1.capacity(),v1.len() );
-    v.push(5); //nuovo dato
+    v.push(Test(5)); //nuovo dato
     //prima capacity  e len 0;: illeciti
     println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
     println!("&v[0]: {:p}",&v[0]);
     //ora risposta è ptr: 0xbb8870, capacity:4,len: 1
-    v.push(7); //nuovo dato
-    //println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
+    v.push(Test(7)); //nuovo dato
+    println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
     //ptr: 0xc62750, capacity:4,len: 2
-    v.push(1);
-    v.push(32);
+    v.push(Test(1));
+    v.push(Test(32));
 
     println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
-    v.push(23);
+    v.push(Test(23));
     //possiamo compattare
+    println!("Shrinking vector");
     v.shrink_to_fit(); //libero un pezzo per darlo all's0
-    println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
-    println!("&v[0]: {:p}",&v[0]);
+    println!("Popping value");
     v.pop();
     println!("ptr: {:p}, capacity:{},len: {}", v.as_ptr(),v.capacity(),v.len() );
     println!("&v[0]: {:p}",&v[0]); //non si è compattata, è cambiata solo la len
+
+    //cambia indirizzo quando diventa più grande
 
     //capacity duplica ogni volta
     //non si compatta mai: lo spazio in eccesso si butta sempre
 
     //voglio vedere come si comporta con gli interi: voglio vedere quando butta via interi
-*/
+
 
 
 
